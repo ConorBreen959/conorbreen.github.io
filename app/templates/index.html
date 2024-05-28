@@ -9,8 +9,8 @@
 		<title>Story by HTML5 UP</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../static/css/main.css" />
-		<noscript><link rel="stylesheet" href="../static/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+		<noscript><link rel="stylesheet" href="{{ url_for('static', filename='css/noscript.css') }}" /></noscript>
 	</head>
 	<body class="is-preload">
 
@@ -27,7 +27,7 @@
 							</ul>
 						</div>
 						<div class="image">
-							<img src="../static/images/banner.jpg" alt="" />
+							<img src="{{ url_for('static', filename='images/banner.jpg') }}" alt="" />
 						</div>
 					</section>
 
@@ -37,44 +37,44 @@
 							<h2>Site Info</h2>
 							<p>This gorgeous HTML template is courtesy of <a href="https://html5up.net">HTML5 UP</a> which is licensed under the <a href="https://html5up.net/license">Creative Commons</a>. The backend is built by me using Flask.</p>
 							<ul class="actions stacked">
-								<li><a href="#" class="button">Learn More</a></li>
+								<li><a href="#second" class="button big wide smooth-scroll-middle">Learn More</a></li>
 							</ul>
 						</div>
 						<div class="image">
-							<img src="../static/images/spotlight01.jpg" alt="" />
+							<img src="{{ url_for('static', filename='images/spotlight01.jpg') }}" alt="" />
 						</div>
 					</section>
 
 				<!-- Three -->
-					<section class="spotlight style1 orient-left content-align-left image-position-center onscroll-image-fade-in">
+					<section class="spotlight style1 orient-left content-align-left image-position-center onscroll-image-fade-in" id="second">
 						<div class="content">
 							<h2>Bioinformatics</h2>
 							<p>All things genomics and data science.</p>
 							<ul class="actions stacked">
-								<li><a href="#" class="button">Other Interests</a></li>
+								<li><a href="#third" class="button big wide smooth-scroll-middle">Other Interests</a></li>
 							</ul>
 						</div>
 						<div class="image">
-							<img src="../static/images/spotlight02.jpg" alt="" />
+							<img src="{{ url_for('static', filename='images/spotlight02.jpg') }}" alt="" />
 						</div>
 					</section>
 
 				<!-- Four -->
-					<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in">
+					<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in" id="third">
 						<div class="content">
 							<h2>Woodworking</h2>
-							<p>I'm a keen maker in my spare time, and since Covid I've run my own tiny woodworking shop.</p>
+							<p>I'm an aspiring maker in my spare time, and since Covid I've run my own tiny woodworking shop.</p>
 							<ul class="actions stacked">
-								<li><a href="#" class="button">Even More Interests</a></li>
+								<li><a href="#fourth" class="button big wide smooth-scroll-middle">Even More Interests</a></li>
 							</ul>
 						</div>
 						<div class="image">
-							<img src="../static/images/spotlight03.jpg" alt="" />
+							<img src="{{ url_for('static', filename='images/spotlight03.jpg') }}" alt="" />
 						</div>
 					</section>
 
 				<!-- Five -->
-					<section class="wrapper style1 align-center">
+					<section class="wrapper style1 align-center" id="fourth">
 						<div class="inner">
 							<h2>Astronomy</h2>
 							<p>I'm also very into space and have my very own Vixen telescope, some of my attempts at astrophotography can be seen below.</p>
@@ -83,8 +83,8 @@
 						<!-- Gallery -->
 							<div class="gallery style2 medium lightbox onscroll-fade-in">
 								<article>
-									<a href="../static/images/gallery/fulls/01.jpg" class="image">
-										<img src="../static/images/gallery/thumbs/01.jpg" alt="" />
+									<a href="{{ url_for('static', filename='images/gallery/fulls/01.jpg') }}" class="image">
+										<img src="{{ url_for('static', filename='images/gallery/thumbs/01.jpg') }}" alt="" />
 									</a>
 									<div class="caption">
 										<h3>Ipsum Dolor</h3>
@@ -95,8 +95,8 @@
 									</div>
 								</article>
 								<article>
-									<a href="../static/images/gallery/fulls/02.jpg" class="image">
-										<img src="../static/images/gallery/thumbs/02.jpg" alt="" />
+									<a href="{{ url_for('static', filename='images/gallery/fulls/02.jpg') }}" class="image">
+										<img src="{{ url_for('static', filename='../static/images/gallery/thumbs/02.jpg') }}" alt="" />
 									</a>
 									<div class="caption">
 										<h3>Feugiat Lorem</h3>
@@ -107,8 +107,8 @@
 									</div>
 								</article>
 								<article>
-									<a href="../static/images/gallery/fulls/03.jpg" class="image">
-										<img src="../static/images/gallery/thumbs/03.jpg" alt="" />
+									<a href="{{ url_for('static', filename='images/gallery/fulls/03.jpg') }}" class="image">
+										<img src="{{ url_for('static', filename='images/gallery/thumbs/03.jpg') }}" alt="" />
 									</a>
 									<div class="caption">
 										<h3>Magna Amet</h3>
@@ -119,8 +119,8 @@
 									</div>
 								</article>
 								<article>
-									<a href="../static/images/gallery/fulls/04.jpg" class="image">
-										<img src="../static/images/gallery/thumbs/04.jpg" alt="" />
+									<a href="{{ url_for('static', filename='images/gallery/fulls/04.jpg') }}" class="image">
+										<img src="{{ url_for('static', filename='images/gallery/thumbs/04.jpg') }}" alt="" />
 									</a>
 									<div class="caption">
 										<h3>Sed Tempus</h3>
@@ -131,8 +131,8 @@
 									</div>
 								</article>
 								<article>
-									<a href="../static/images/gallery/fulls/05.jpg" class="image">
-										<img src="../static/images/gallery/thumbs/05.jpg" alt="" />
+									<a href="{{ url_for('static', filename='images/gallery/fulls/05.jpg') }}" class="image">
+										<img src="{{ url_for('static', filename='images/gallery/thumbs/05.jpg') }}" alt="" />
 									</a>
 									<div class="caption">
 										<h3>Ultrices Magna</h3>
@@ -143,8 +143,8 @@
 									</div>
 								</article>
 								<article>
-									<a href="../static/images/gallery/fulls/06.jpg" class="image">
-										<img src="../static/images/gallery/thumbs/06.jpg" alt="" />
+									<a href="{{ url_for('static', filename='images/gallery/fulls/06.jpg') }}" class="image">
+										<img src="{{ url_for('static', filename='images/gallery/thumbs/06.jpg') }}" alt="" />
 									</a>
 									<div class="caption">
 										<h3>Sed Tempus</h3>
@@ -155,8 +155,8 @@
 									</div>
 								</article>
 								<article>
-									<a href="../static/images/gallery/fulls/07.jpg" class="image">
-										<img src="../static/images/gallery/thumbs/07.jpg" alt="" />
+									<a href="{{ url_for('static', filename='images/gallery/fulls/07.jpg') }}" class="image">
+										<img src="{{ url_for('static', filename='images/gallery/thumbs/07.jpg') }}" alt="" />
 									</a>
 									<div class="caption">
 										<h3>Ipsum Lorem</h3>
@@ -167,8 +167,8 @@
 									</div>
 								</article>
 								<article>
-									<a href="../static/images/gallery/fulls/08.jpg" class="image">
-										<img src="../static/images/gallery/thumbs/08.jpg" alt="" />
+									<a href="{{ url_for('static', filename='images/gallery/fulls/08.jpg') }}" class="image">
+										<img src="{{ url_for('static', filename='images/gallery/thumbs/08.jpg') }}" alt="" />
 									</a>
 									<div class="caption">
 										<h3>Magna Risus</h3>
@@ -179,8 +179,8 @@
 									</div>
 								</article>
 								<article>
-									<a href="../static/images/gallery/fulls/09.jpg" class="image">
-										<img src="../static/images/gallery/thumbs/09.jpg" alt="" />
+									<a href="{{ url_for('static', filename='images/gallery/fulls/09.jpg') }}" class="image">
+										<img src="{{ url_for('static', filename='images/gallery/thumbs/09.jpg') }}" alt="" />
 									</a>
 									<div class="caption">
 										<h3>Tempus Dolor</h3>
@@ -191,8 +191,8 @@
 									</div>
 								</article>
 								<article>
-									<a href="../static/images/gallery/fulls/10.jpg" class="image">
-										<img src="../static/images/gallery/thumbs/10.jpg" alt="" />
+									<a href="{{ url_for('static', filename='images/gallery/fulls/10.jpg') }}" class="image">
+										<img src="{{ url_for('static', filename='images/gallery/thumbs/10.jpg') }}" alt="" />
 									</a>
 									<div class="caption">
 										<h3>Sed Etiam</h3>
@@ -203,8 +203,8 @@
 									</div>
 								</article>
 								<article>
-									<a href="../static/images/gallery/fulls/11.jpg" class="image">
-										<img src="../static/images/gallery/thumbs/11.jpg" alt="" />
+									<a href="{{ url_for('static', filename='images/gallery/fulls/11.jpg') }}" class="image">
+										<img src="{{ url_for('static', filename='images/gallery/thumbs/11.jpg') }}" alt="" />
 									</a>
 									<div class="caption">
 										<h3>Magna Lorem</h3>
@@ -215,8 +215,8 @@
 									</div>
 								</article>
 								<article>
-									<a href="../static/images/gallery/fulls/12.jpg" class="image">
-										<img src="../static/images/gallery/thumbs/12.jpg" alt="" />
+									<a href="{{ url_for('static', filename='images/gallery/fulls/12.jpg') }}" class="image">
+										<img src="{{ url_for('static', filename='images/gallery/thumbs/12.jpg') }}" alt="" />
 									</a>
 									<div class="caption">
 										<h3>Ipsum Dolor</h3>
@@ -338,19 +338,20 @@
 								<li><a href="#" class="icon style2 fa-envelope"><span class="label">Email</span></a></li>
 							</ul>
 							<p>&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+							<button type="button" class="button small" onclick="window.location.href='{{ url_for( 'HomeView.user') }}';">Sign in</button>
 						</div>
 					</footer>
 
 			</div>
 
 		<!-- Scripts -->
-			<script src="../static/js/jquery.min.js"></script>
-			<script src="../static/js/jquery.scrollex.min.js"></script>
-			<script src="../static/js/jquery.scrolly.min.js"></script>
-			<script src="../static/js/browser.min.js"></script>
-			<script src="../static/js/breakpoints.min.js"></script>
-			<script src="../static/js/util.js"></script>
-			<script src="../static/js/main.js"></script>
+			<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/jquery.scrollex.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/jquery.scrolly.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/breakpoints.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/util.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 	</body>
 </html>

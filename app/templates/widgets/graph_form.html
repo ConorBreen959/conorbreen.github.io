@@ -1,0 +1,60 @@
+{% import 'appbuilder/general/lib.html' as lib %}
+
+{% block body %}
+
+    {% set begin_sep_label = '<td class="col-lg-2">' %}
+    {% set end_sep_label = '</td>' %}
+    {% set begin_sep_field = '<td>' %}
+    {% set end_sep_field = '</td>' %}
+
+    <form id="upload-file" action="" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-xs-20 col-sm-10">
+                {{ form.hidden_tag() }}
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        {% set field = form["filename"] %}
+                        <tr>
+                            {{ lib.render_field(field, begin_sep_label, end_sep_label, begin_sep_field, end_sep_field) }}
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <button type='button' id="search_button" class="btn btn-sm btn-primary" onclick="ProcessImage()">Search</button>
+    </form>
+
+    <div id="graph-container"></div>
+{% endblock %}
+
+{% block head_js %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{{url_for('static', filename = 'jquery.js')}}">\x3C/script>')</script>
+
+    <script>
+        function ProcessImage() {
+            var formDataRaw = $('#upload-file')[0];
+            var form_data = new FormData(formDataRaw);
+            $.ajax({
+                type: "POST",
+                url: "/graph/show",
+                data: form_data,
+                contentType: false,
+                cache: false,
+                processData: false,
+                async: false,
+                beforeSend: function () {
+                    $("#graph-container").html("Creating...");
+                },
+                success: function(response) {
+                    $("#graph-container").html(response);
+                },
+                error: function (xhr) {
+                    $("#graph-container").html(xhr);
+                }
+            });
+        }
+    </script>
+
+{% endblock %}
