@@ -64,7 +64,8 @@ def register_views():
     from app.views import (
         HomeView,
         HealthView,
-        GraphView
+        GraphView,
+        CopernicusView
     )
 
     appbuilder.add_view_no_menu(HomeView())
@@ -72,5 +73,9 @@ def register_views():
     appbuilder.add_view(
         GraphView,
         "Graph View",
+        icon="fa-table",)
+    appbuilder.add_view(
+        CopernicusView,
+        "Copernicus View",
         icon="fa-table",)
     appbuilder.security_cleanup()

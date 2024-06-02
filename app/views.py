@@ -6,8 +6,25 @@ from flask_appbuilder.widgets import ListWidget
 from flask_login import current_user
 
 from app import appbuilder
-from app.forms import DataUploadForm
-from app.utils.flexible_visualisation import show_graph
+from app.forms import DataUploadForm, CopernicusForm
+from app.utils.flexible_visualisation import build_graph
+from app.utils.copernicus import calculate_retrogrades
+
+
+class CopernicusWidget(ListWidget):
+    template = "widgets/copernicus_form.html"
+
+
+class CopernicusView(SimpleFormView):
+    route_base = "/copernicus"
+    form = CopernicusForm
+    form_title = "Copernicus"
+    edit_widget = CopernicusWidget
+
+    @expose("/show/", methods=("GET", "POST"))
+    def show_graph(self):
+        g = calculate_retrogrades(2010, "mars")
+        return jsonify(render_template("graph.html", graph=g, title="Retrograde"))
 
 
 class GraphWidget(ListWidget):
@@ -27,7 +44,7 @@ class GraphView(SimpleFormView):
         title = " ".join(filename.split("_")).title()
         data = pd.read_csv(lims_file)
 
-        g = show_graph(data)
+        g = build_graph(data)
         return jsonify(render_template("graph.html", graph=g, title=title))
 
 

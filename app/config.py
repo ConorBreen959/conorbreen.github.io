@@ -26,7 +26,7 @@ class Config:
     # GLOBALS FOR APP Builder
     # ------------------------------
     # Uncomment to setup Your App name
-    APP_NAME = os.environ.get("APP_NAME", "Medusa")
+    APP_NAME = os.environ.get("APP_NAME", "Conor Breen")
     APP_ICON = os.environ.get("APP_ICON", "/static/img/logo-colour.png")
 
     # ----------------------------------------------------

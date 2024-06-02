@@ -21,7 +21,10 @@ click==8.1.7
     #   flask
     #   flask-appbuilder
 colorama==0.4.6
-    # via flask-appbuilder
+    # via
+    #   click
+    #   flask-appbuilder
+    #   pytest
 deprecated==1.2.14
     # via limits
 dnspython==2.6.1
@@ -104,7 +107,9 @@ marshmallow-sqlalchemy==0.28.2
 mdurl==0.1.2
     # via markdown-it-py
 numpy==1.26.4
-    # via pandas
+    # via
+    #   pandas
+    #   scipy
 ordered-set==4.1.0
     # via flask-limiter
 packaging==24.0
@@ -153,6 +158,8 @@ rpds-py==0.18.1
     # via
     #   jsonschema
     #   referencing
+scipy==1.13.1
+    # via -r requirements.in
 six==1.16.0
     # via
     #   prison
