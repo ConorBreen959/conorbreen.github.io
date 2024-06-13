@@ -5,6 +5,7 @@ import sys
 from flask import Flask, redirect, request
 from flask_alembic import Alembic
 from flask_appbuilder import AppBuilder, Base
+from flask_appbuilder.menu import Menu, MenuItem
 from flask_mail import Mail
 
 from .landing import MyIndexView
@@ -57,6 +58,9 @@ def create_app():
         alembic.upgrade()
     seed_users()
     register_views()
+    Menu.adjust_menu = adjust_menu
+    appbuilder.menu.adjust_menu()
+    MenuItem.is_active = is_active
     return app
 
 
@@ -73,9 +77,37 @@ def register_views():
     appbuilder.add_view(
         GraphView,
         "Graph View",
-        icon="fa-table",)
+        icon="fa-table",
+        category="Graphs",
+        category_icon="fa-file-pdf-o"
+    )
     appbuilder.add_view(
         CopernicusView,
         "Copernicus View",
-        icon="fa-table",)
+        icon="fa-table",
+        category="Graphs",
+        category_icon="fa-file-pdf-o"
+    )
     appbuilder.security_cleanup()
+
+
+def adjust_menu(self):
+    old_menu = self.menu
+    new_menu = old_menu[1:]
+    new_menu.append(old_menu[0])
+    self.menu = new_menu
+
+
+def is_active(self):
+    if self.childs:
+        for c in self.childs:
+            if c.is_active():
+                return True
+    else:
+        if request.path == self.get_url():
+            return True
+        else:
+            if self.baseview:
+                if request.blueprint == self.baseview.blueprint.name:
+                    return True
+    return False

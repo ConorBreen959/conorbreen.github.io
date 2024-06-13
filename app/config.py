@@ -20,6 +20,8 @@ class Config:
 
     DATE_FORMAT = "%d %b, %Y"
 
+    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
+
     ERROR_LOG = "error.log"
 
     # ------------------------------
@@ -28,6 +30,7 @@ class Config:
     # Uncomment to setup Your App name
     APP_NAME = os.environ.get("APP_NAME", "Conor Breen")
     APP_ICON = os.environ.get("APP_ICON", "/static/img/logo-colour.png")
+    APP_THEME = "flatly.css"
 
     # ----------------------------------------------------
     # AUTHENTICATION CONFIG
@@ -49,6 +52,8 @@ class Config:
 
     # API access token expiry
     JWT_ACCESS_TOKEN_EXPIRES = 10
+
+    FAB_API_SWAGGER_UI = True
 
     # Flask-Mail Config
     MAIL_SERVER = os.environ.get("MAIL_SERVER")
