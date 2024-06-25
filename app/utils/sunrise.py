@@ -1,27 +1,34 @@
 from pytz import timezone
 from datetime import datetime, timedelta
 from skyfield import almanac
-from skyfield.api import N, W, wgs84, load
+from skyfield.api import N, E, wgs84, load
 import pandas as pd
 import numpy as np
+from geopy.geocoders import Nominatim
 import plotly.graph_objects as go
 import plotly.io as pio
 import seaborn as sb
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
+import matplotlib as mpl
 
 
 pio.renderers.default = "browser"
 
-year = 2023
-days = 365
+year = 2024
+days = 366
 if year % 4:
-    days = 366
+    days = 367
 
 tz = timezone("Europe/Dublin")
 ts = load.timescale()
-now = tz.localize(datetime(2024, 1, 1))
+now = tz.localize(datetime(year, 1, 1))
 eph = load('de421.bsp')
-location = wgs84.latlon(53.3498 * N, 6.2603* W)
+
+city = "Dublin, IE"
+geolocator = Nominatim(user_agent="MyApp")
+location = geolocator.geocode(city)
+
+location = wgs84.latlon(location.latitude * N, location.longitude * E)
 f = almanac.dark_twilight_day(eph, location)
 
 
@@ -40,6 +47,12 @@ def format_time(t):
     time_object = datetime.strptime(time_x, "%H:%M")
     time_in_seconds = timedelta(hours=time_object.hour, minutes=time_object.minute).seconds
     return date_object, time_object
+
+for index, (t, e) in enumerate(zip(times[0:49], events[0:49])):
+    event = almanac.TWILIGHTS[e]
+    next_event = list(events).index(e, index+1)
+    print(event)
+    print(almanac.TWILIGHTS[events[next_event]])
 
 
 for index, (t, e) in enumerate(zip(times, events)):
@@ -64,20 +77,27 @@ for index, (t, e) in enumerate(zip(times, events)):
 sunrise_df = sunrise_df.reset_index(drop=True)
 
 
-event_types = sunrise_df["Event"].drop_duplicates().tolist()
-event_dfs = [sunrise_df[sunrise_df["Event"] == event_type] for event_type in event_types if event_type != "Night"]
+event_types = {
+    'Astronomical dawn': "#785a08",
+    'Nautical dawn': "#d29e0e",
+    'Civil dawn': "#f4ca58",
+    'Day': "#fae7b2",
+    'Civil dusk': "#f4ca58",
+    'Nautical dusk': "#d29e0e",
+    'Astronomical dusk': "#785a08",
+    'Night': "#261a03",
+}
+
+fig, ax = plt.subplots(1, 1, sharex=True, figsize=(9, 7), dpi=1000)
+for event_type, fill in event_types.items():
+    event_df = sunrise_df[sunrise_df["Event"] == event_type]
+    if 
+    ax.fill_between(x="Date", y1="Starts", y2=, data=event_df, color=fill)
+plt.savefig("my_fig.png")
 
 
-fig = go.Figure()
 
-for index, event_df in enumerate(event_dfs):
-    name = event_df["Event"].tolist()[0]
-    fill = "tonexty"
-    if index == 0:
-        fill = None
-    fig.add_trace(go.Scatter(x=event_df["Date"], y=event_df["Starts"].replace(pd.NaT, np.nan), name=f"{name} starts", hovertemplate="%{y|%H:%M}"))
-    fig.add_trace(go.Scatter(x=event_df["Date"], y=event_df["Ends"].replace(pd.NaT, np.nan), name=f"{name} ends", hovertemplate="%{y|%H:%M}<br>%{x}>"))
-fig.show()
+
 
 
 plt.figure(figsize=(50, 50))
